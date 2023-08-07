@@ -52,9 +52,9 @@ jobs:
 ########################################################################
 
       # The script won't be able to find Agda if we don't tell it to look at the
-      # content of ~/.cabal/bin
+      # content of ~/.local/state/cabal/bin
       - name: Put cabal programs in PATH
-        run: echo "~/.cabal/bin" >> $GITHUB_PATH
+        run: echo "~/.local/state/cabal/bin" >> $GITHUB_PATH
 
 ########################################################################
 ## CACHING
@@ -69,9 +69,9 @@ jobs:
         id: cache-cabal
         with:
           path: |
-            ~/.cabal/packages
-            ~/.cabal/store
-            ~/.cabal/bin
+            ~/.local/state/cabal/packages
+            ~/.local/state/cabal/store
+            ~/.local/state/cabal/bin
           key: ${{ runner.os }}-${{ env.GHC_VERSION }}-${{ env.CABAL_VERSION }}-${{ env.AGDA_COMMIT }}
 
 ########################################################################
