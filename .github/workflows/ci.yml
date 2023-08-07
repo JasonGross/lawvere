@@ -89,6 +89,8 @@ jobs:
         if: steps.cache-cabal.outputs.cache-hit != 'true'
         run: cabal update
 
+      - run: cat .config/cabal/config
+
       - name: Download and install Agda from github
         if: steps.cache-cabal.outputs.cache-hit != 'true'
         run: |
@@ -114,8 +116,5 @@ jobs:
 ## TESTING AND DEPLOYMENT
 ########################################################################
 
-      # By default github actions do not pull the repo
-      - name: Checkout agda-categories
-        uses: actions/checkout@v3
-
+      - uses: actions/checkout@v3
       - run: make
