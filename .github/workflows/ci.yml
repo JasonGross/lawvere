@@ -37,10 +37,9 @@ env:
   AGDA_COMMIT: tags/v2.6.3
   STDLIB_VERSION: 1.7.2
 
-  GHC_VERSION: 8.6.5
-  CABAL_VERSION: 3.2.0.0
-  CABAL_INSTALL: cabal install --overwrite-policy=always --ghc-options='-O1 +RTS -M6G -RTS' --bindir=~/.local/state/cabal/bin
-  CACHE_VERSION: 1
+  GHC_VERSION: 8.10.7
+  CABAL_VERSION: 3.6.2.0
+  CABAL_INSTALL: cabal install --overwrite-policy=always --ghc-options='-O1 +RTS -M6G -RTS' --bindir ~/.local/state/cabal/bin
 #  AGDA: agda --auto-inline -Werror +RTS -M6G -H3.5G -A128M -RTS -i. -i src/
 
 jobs:
@@ -73,7 +72,7 @@ jobs:
             ~/.local/state/cabal/packages
             ~/.local/state/cabal/store
             ~/.local/state/cabal/bin
-          key: ${{ runner.os }}-${{ env.GHC_VERSION }}-${{ env.CABAL_VERSION }}-${{ env.AGDA_COMMIT }}-${{ env.CACHE_VERSION }}
+          key: ${{ runner.os }}-${{ env.GHC_VERSION }}-${{ env.CABAL_VERSION }}-${{ env.AGDA_COMMIT }}
 
 ########################################################################
 ## INSTALLATION STEPS
@@ -99,6 +98,8 @@ jobs:
           touch doc/user-manual.pdf
           ${{ env.CABAL_INSTALL }}
           cd ..
+
+      - run: find ~/.local/state/cabal
 
       - name: Install stdlib
         run: |
