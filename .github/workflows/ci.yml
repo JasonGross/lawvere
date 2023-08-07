@@ -54,7 +54,7 @@ jobs:
       # The script won't be able to find Agda if we don't tell it to look at the
       # content of ~/.local/state/cabal/bin
       - name: Put cabal programs in PATH
-        run: echo "~/.local/state/cabal/bin" >> $GITHUB_PATH
+        run: echo "$HOME/.local/state/cabal/bin" >> $GITHUB_PATH
 
 ########################################################################
 ## CACHING
@@ -99,7 +99,7 @@ jobs:
           ${{ env.CABAL_INSTALL }}
           cd ..
 
-      - run: find ~/.local/state/cabal
+      - run: ls "$HOME/.local/state/cabal/bin"
 
       - name: Install stdlib
         run: |
