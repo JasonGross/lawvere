@@ -89,8 +89,6 @@ jobs:
         if: steps.cache-cabal.outputs.cache-hit != 'true'
         run: cabal update
 
-      - run: cat ~/.config/cabal/config
-
       - name: Download and install Agda from github
         if: steps.cache-cabal.outputs.cache-hit != 'true'
         run: |
@@ -99,7 +97,7 @@ jobs:
           git checkout ${{ env.AGDA_COMMIT }}
           mkdir -p doc
           touch doc/user-manual.pdf
-          ${{ env.CABAL_INSTALL }}
+          ${{ env.CABAL_INSTALL }} --verbose=3
           cd ..
 
       - name: Install stdlib
