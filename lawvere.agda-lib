@@ -1,0 +1,3 @@
+name: lawvere
+include: src
+flags: --no-import-sorts --safe --without-K
