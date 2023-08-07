@@ -77,6 +77,7 @@ jobs:
 ########################################################################
 ## INSTALLATION STEPS
 ########################################################################
+      - run: find ~/.local/state/cabal
 
       - name: Install ghc and cabal
         if: steps.cache-cabal.outputs.cache-hit != 'true'
