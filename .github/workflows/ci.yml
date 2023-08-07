@@ -43,7 +43,7 @@ env:
 #  AGDA: agda --auto-inline -Werror +RTS -M6G -H3.5G -A128M -RTS -i. -i src/
 
 jobs:
-  test-categories:
+  ci:
     runs-on: ubuntu-latest
     steps:
 
