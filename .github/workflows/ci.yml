@@ -97,7 +97,7 @@ jobs:
           git checkout ${{ env.AGDA_COMMIT }}
           mkdir -p doc
           touch doc/user-manual.pdf
-          ${{ env.CABAL_INSTALL }} --verbose=3
+          ${{ env.CABAL_INSTALL }}
           cd ..
 
       - name: Install stdlib
