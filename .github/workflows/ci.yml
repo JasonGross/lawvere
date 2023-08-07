@@ -39,7 +39,7 @@ env:
 
   GHC_VERSION: 8.6.5
   CABAL_VERSION: 3.6.2.0
-  CABAL_INSTALL: cabal install --overwrite-policy=always --ghc-options='-O1 +RTS -M6G -RTS' --bindir ~/.local/state/cabal/bin
+  CABAL_INSTALL: cabal install --overwrite-policy=always --ghc-options='-O1 +RTS -M6G -RTS' --installdir ~/.local/state/cabal/bin
 #  AGDA: agda --auto-inline -Werror +RTS -M6G -H3.5G -A128M -RTS -i. -i src/
 
 jobs:
@@ -87,8 +87,6 @@ jobs:
       - name: Cabal update
         if: steps.cache-cabal.outputs.cache-hit != 'true'
         run: cabal update
-
-      - run: cabal install -h
 
       - name: Download and install Agda from github
         if: steps.cache-cabal.outputs.cache-hit != 'true'
