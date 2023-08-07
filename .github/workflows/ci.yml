@@ -89,7 +89,7 @@ jobs:
         if: steps.cache-cabal.outputs.cache-hit != 'true'
         run: cabal update
 
-      - run: cat .config/cabal/config
+      - run: cat ~/.config/cabal/config
 
       - name: Download and install Agda from github
         if: steps.cache-cabal.outputs.cache-hit != 'true'
