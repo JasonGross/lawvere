@@ -26,7 +26,7 @@ module setup
     chain : ∀ {a} {f g : A.Run.Obj a} -> f A.≈ g -> f A.≈ g
     chain x = x
 
-    syntax chain {f = f} pf = f [ pf ]
+    syntax chain {f = f} pf = f =[ pf ]=
 
     _[■] : ∀ {a} (f : A.Run.Obj a) -> f A.≈ f
     f [■] = A.ι₂
@@ -64,8 +64,8 @@ module setup
         fixpt = introspect (t ▷ p) ▷ proof
           module fixpt where
           proof : fst (introspect (t ▷ p)) A.≈ (reflect (introspect (t ▷ p)) » f)
-          proof = fst (introspect (t ▷ p))             [ A.ι₂ ]
-            A.⨾′ (pack (t ▷ p) » t)                    [ A.ι₂ ]
-            A.⨾′ (pack (t ▷ p) » (key » f))            [ A.Map-⨾.component _ _ _ ]
-            A.⨾′ ((pack (t ▷ p) ⨾ key) » f)            [ A.Map′.component key-law _ ]
-            A.⨾′ ((reflect (introspect (t ▷ p))) » f)  [■]
+          proof = fst (introspect (t ▷ p))             =[ A.ι₂ ]=
+            A.⨾′ (pack (t ▷ p) » t)                    =[ A.ι₂ ]=
+            A.⨾′ (pack (t ▷ p) » (key » f))            =[ A.Map-⨾.component _ _ _ ]=
+            A.⨾′ ((pack (t ▷ p) ⨾ key) » f)            =[ A.Map′.component key-law _ ]=
+            A.⨾′ ((reflect (introspect (t ▷ p))) » f)   [■]

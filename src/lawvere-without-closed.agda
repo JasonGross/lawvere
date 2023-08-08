@@ -36,11 +36,11 @@ module setup
     key = dup ⨾ σ
 
     key-law : ∀ {t : s ~> a} -> (σ⁻¹ t ⨾ (dup ⨾ σ)) ≈ (σ⁻¹ t ⨾ t)
-    key-law {t} = (σ⁻¹ t ⨾ (dup ⨾ σ))            [ ⨾⨾ ]
-               ⨾₂ ((σ⁻¹ t ⨾ dup) ⨾ σ)            [ dup-natural ⨾′^ _ ]
-               ⨾₂ ((dup ⨾ (σ⁻¹ t ×× σ⁻¹ t)) ⨾ σ) [ ÷₂ ⨾⨾ ]
-               ⨾₂ (dup ⨾ ((σ⁻¹ t ×× σ⁻¹ t) ⨾ σ)) [ σ-point-surjection ]
-               ⨾₂ (σ⁻¹ t ⨾ t)                    [■]
+    key-law {t} = (σ⁻¹ t ⨾ (dup ⨾ σ))            =[ ⨾⨾ ]=
+               ⨾₂ ((σ⁻¹ t ⨾ dup) ⨾ σ)            =[ dup⨾ ⨾′^ _ ]=
+               ⨾₂ ((dup ⨾ (σ⁻¹ t ×× σ⁻¹ t)) ⨾ σ) =[ ÷₂ ⨾⨾ ]=
+               ⨾₂ (dup ⨾ ((σ⁻¹ t ×× σ⁻¹ t) ⨾ σ)) =[ σ-point-surjection ]=
+               ⨾₂ (σ⁻¹ t ⨾ t)                     [■]
 
     module loopy-conditions = loopy-setup.conditions key key-law f
     open loopy-conditions public using (t ; fixpt)

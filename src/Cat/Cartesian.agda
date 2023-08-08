@@ -23,12 +23,12 @@ record IsCartesian (C : Cat) : Type (l ⊔ m ⊔ n) where
   field ××ι  : ∀ {a1 a2} -> (ι {a1} ×× ι {a2}) ≈ ι
   field dup-getl : ∀ {a} -> (dup {a} ⨾ getl) ≈ ι
   field dup-getr : ∀ {a} -> (dup {a} ⨾ getr) ≈ ι
-  field ××-natural : ∀ {a1 a2 a3 a1′ a2′ a3′} {f : a1 ~> a2} {g : a2 ~> a3} {f′ : a1′ ~> a2′} {g′ : a2′ ~> a3′}
+  field ××⨾ : ∀ {a1 a2 a3 a1′ a2′ a3′} {f : a1 ~> a2} {g : a2 ~> a3} {f′ : a1′ ~> a2′} {g′ : a2′ ~> a3′}
                  -> ((f ×× f′) ⨾ (g ×× g′)) ≈ ((f ⨾ g) ×× (f′ ⨾ g′))
-  field dup-natural : ∀ {a1 a2} {f : a1 ~> a2} -> (f ⨾ dup) ≈ (dup ⨾ (f ×× f))
-  field getl-natural : ∀ {a1 a2 a1′ a2′} {f : a1 ~> a2} {f′ : a1′ ~> a2′}
+  field dup⨾ : ∀ {a1 a2} {f : a1 ~> a2} -> (f ⨾ dup) ≈ (dup ⨾ (f ×× f))
+  field getl⨾ : ∀ {a1 a2 a1′ a2′} {f : a1 ~> a2} {f′ : a1′ ~> a2′}
                    -> ((f ×× f′) ⨾ getl) ≈ (getl ⨾ f)
-  field getr-natural : ∀ {a1 a2 a1′ a2′} {f : a1 ~> a2} {f′ : a1′ ~> a2′}
+  field getr⨾ : ∀ {a1 a2 a1′ a2′} {f : a1 ~> a2} {f′ : a1′ ~> a2′}
                    -> ((f ×× f′) ⨾ getr) ≈ (getr ⨾ f′)
   field _××′_ : ∀ {a1 a2 a1′ a2′} {f g : a1 ~> a2} {f′ g′ : a1′ ~> a2′} -> f ≈ g -> f′ ≈ g′ -> (f ×× f′) ≈ (g ×× g′)
   infix 9 _××′_
