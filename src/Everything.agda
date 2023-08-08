@@ -15,6 +15,7 @@ open import Set.Cat
 open import Shim
 open import lawvere-without-closed
 open import lawvere
+open import lob
 open import loopy
 open import no-presheaf
 open import singleton

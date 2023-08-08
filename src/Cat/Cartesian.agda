@@ -37,9 +37,9 @@ record IsCartesian (C : Cat) : Type (l ⊔ m ⊔ n) where
   f ^××′ e = ι₂ ××′ e
   infixr 9 _^××′_
 
-  _××^′_ : ∀ {a1 a2 a1′ a2′} {f g : a1 ~> a2} -> f ≈ g -> (f′ : a1′ ~> a2′) -> (f ×× f′) ≈ (g ×× f′)
-  e ××^′ f′ = e ××′ ι₂
-  infixl 9 _××^′_
+  _××′^_ : ∀ {a1 a2 a1′ a2′} {f g : a1 ~> a2} -> f ≈ g -> (f′ : a1′ ~> a2′) -> (f ×× f′) ≈ (g ×× f′)
+  e ××′^ f′ = e ××′ ι₂
+  infixl 9 _××′^_
 
 record IsClosed (C : Cat) (CC : IsCartesian C) : Type (l ⊔ m ⊔ n) where
   private module C = Cat C
