@@ -1,7 +1,5 @@
 open import Shim
-open import Cat
 open import Cat.Cartesian
-open import Presheaf as _
 open import Functor.LaxMonoidalSemicomonad
 module lob
   {l m n}

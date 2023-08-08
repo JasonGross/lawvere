@@ -1,5 +1,4 @@
 open import Shim
-open import Cat
 open import Cat.Cartesian
 open import Presheaf as _
 open CartesianCat using (cat)

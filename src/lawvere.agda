@@ -1,5 +1,4 @@
 open import Shim
-open import Cat
 open import Cat.Cartesian
 open CartesianClosedCat using (cat)
 module lawvere
