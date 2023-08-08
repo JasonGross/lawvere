@@ -6,7 +6,6 @@ module diagonal
   {l m n sl sm}
   (CtxCat : CartesianCat l m n)
   (TyCat : Presheaf l m n sl sm (CtxCat .cat))
---  (F : LaxMonoidalSemicomonad l m n C)
   where
 
 private module CtxCat = CartesianCat CtxCat
