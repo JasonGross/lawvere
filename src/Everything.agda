@@ -14,9 +14,11 @@ open import Set
 open import Set.Cat
 open import Shim
 open import bounded-lob
+open import diagonal
 open import lawvere-without-closed
 open import lawvere
 open import lob
 open import loopy
 open import no-presheaf
 open import singleton
+open import spurious-counterfactuals
