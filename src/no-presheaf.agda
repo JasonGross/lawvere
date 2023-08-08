@@ -1,5 +1,4 @@
 open import Shim
-open import Cat
 open import Cat.Cartesian
 open CartesianCat using (cat)
 module no-presheaf
