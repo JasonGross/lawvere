@@ -13,6 +13,7 @@ open import Presheaf.Hom
 open import Set
 open import Set.Cat
 open import Shim
+open import bounded-lob
 open import lawvere-without-closed
 open import lawvere
 open import lob

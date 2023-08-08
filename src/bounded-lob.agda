@@ -1,5 +1,4 @@
-{-open import Shim
-open import Cat
+open import Shim
 open import Cat.Cartesian
 open import Presheaf as _
 open import Functor.LaxMonoidalSemicomonad
@@ -18,59 +17,43 @@ open □ using () renaming (run to □ ; cojoin to quot)
 module setup
   {p} (Pred : C.Obj -> Type p)
   (Σ* : ∀ c -> Pred c -> C.Obj)
-
-  (x : C.Obj)
-
-  (is-short : Pred (□ x))
-  {vs} (is-very-short : 𝟙 ~> x -> Type vs)
-  {vvs} (is-very-very-short : 𝟙 ~> x -> Type vvs)
+  (X : C.Obj)
+  (is-short : Pred (□ X))
+  {vs} (is-very-short : 𝟙 ~> X -> Type vs)
+  {vvs} (is-very-very-short : 𝟙 ~> X -> Type vvs)
   {vvvs} (is-very-very-very-short : ∀ {a} -> (𝟙 ~> a) -> Type vvvs)
-  (reflect : ∃[ t ∈ 𝟙 ~> x ] is-very-short t -> 𝟙 ~> Σ* (□ x) is-short)
-  (s : C.Obj) -- s ~ Σ* (□(s ~> x)) λ{ m -> Π[ s₀ : 𝟙 ~> s ] ((s₀ ⨾ m) ⟫ is-short) }
-  (pack : ∃[ f ∈ s ~> x ] ((s₀ : 𝟙 ~> s) -> is-very-very-very-short s₀ -> is-very-very-short (s₀ ⨾ f)) -> 𝟙 ~> s)
-  (qual : ∀ ((t ▷ p) : ∃[ t ∈ s ~> x ] ((s₀ : 𝟙 ~> s) -> is-very-very-very-short s₀ -> is-very-very-short (s₀ ⨾ t))) -> is-very-short (pack (t ▷ p) ⨾ t))
-  (key : s ~> Σ* (□ x) is-short)
-  (f : Σ* (□ x) is-short ~> x)
+  (reflect : ∃[ t ∈ 𝟙 ~> X ] is-very-short t -> 𝟙 ~> Σ* (□ X) is-short)
   where
 
-  P : s ~> x -> Type (m ⊔ vvs ⊔ vvvs)
-  P f = ∀ (s₀ : 𝟙 ~> s) -> is-very-very-very-short s₀ -> is-very-very-short (s₀ ⨾ f)
+  import loopy C (∙~> X) as loopy
+  private module loopy-setup = loopy.setup is-very-short (Σ* (□ X) is-short) reflect
+  open loopy-setup public using (Fixpoint ; module notations)
 
-  import loopy C (∙~> x) as loopy
-  module loopy-setup = loopy.setup ?
---  module loopy-setup = loopy.setup C _~>_ _⨾_ id _≈_ _■_ 2id assoc _⨾-2map_ 𝟙  -- is-very-short (Σ* (□ x) is-short) reflect s P pack qual key f
---  open loopy-setup public using (introspect ; t)
-{-
-module bounded-lob where
-open import loopy public hiding (module setup)
-module setup
-  where
-
-
-TODO FIXME
-  module loopy-setup = loopy.setup C _~>_ _⨾_ id _≈_ _■_ 2id assoc _⨾-2map_ 𝟙  -- is-very-short (Σ* (□ x) is-short) reflect s P pack qual key f
-  open loopy-setup public using (introspect ; t)
-{-
-  module inner
-    (p : P t)
+  module conditions₁
+    (s : C.Obj) -- s ~ Σ* (□(s ~> X)) λ{ m -> Π[ s₀ : 𝟙 ~> s ] ((s₀ ⨾ m) ⟫ is-short) }
+    (pack : ∃[ f ∈ s ~> X ] ((s₀ : 𝟙 ~> s) -> is-very-very-very-short s₀ -> is-very-very-short (s₀ ⨾ f)) -> 𝟙 ~> s)
+    (qual : ∀ ((t ▷ p) : ∃[ t ∈ s ~> X ] ((s₀ : 𝟙 ~> s) -> is-very-very-very-short s₀ -> is-very-very-short (s₀ ⨾ t))) -> is-very-short (pack (t ▷ p) ⨾ t))
     where
 
-    module lg-inner = lg.inner p
-    open lg-inner public using (fixpt)
+    P : s ~> X -> Type (m ⊔ vvs ⊔ vvvs)
+    P f = ∀ (s₀ : 𝟙 ~> s) -> is-very-very-very-short s₀ -> is-very-very-short (s₀ ⨾ f)
 
-    module inner
-      {ℓe₀} (_≈_ : ∀ {a b} -> (f g : a ~> b) -> Set ℓe₀)
-      (2id : ∀ {a b} {f : a ~> b} -> f ≈ f)
-      (_■_      : ∀ {a b} {f g h : a ~> b} -> f ≈ g -> g ≈ h -> f ≈ h)
-      (rid : ∀ {a b} {f : a ~> b} -> (f ⨾ id) ≈ f)
-      (assoc : ∀ {a b c d} {f : a ~> b} {g : b ~> c} {h : c ~> d} -> (f ⨾ (g ⨾ h)) ≈ ((f ⨾ g) ⨾ h))
-      (_⨾-2map_ : ∀ {a b c} {f f′ : a ~> b} {g g′ : b ~> c} -> f ≈ f′ -> g ≈ g′ -> (f ⨾ g) ≈ (f′ ⨾ g′))
+    private module loopy-conditions₁ = loopy-setup.conditions₁ s P pack qual
+    open loopy-conditions₁ public using (introspect)
 
-      (key-law : ∀ {(t , p) : Σ (s ~> x) P} -> (pack (t , p) ⨾ key) ≈ reflect (introspect (t , p)))
+    module conditions₂
+      (key : s ~> Σ* (□ X) is-short)
+      (key-law : ∀ {(t ▷ p) : ∃[ t ∈ s ~> X ] P t} -> (pack (t ▷ p) ⨾ key) ≈ reflect (introspect (t ▷ p)))
+
+      (f : Σ* (□ X) is-short ~> X)
       where
 
-      module lg-inner-inner = lg-inner.inner _≈_ _≈_ 2id _■_ _■_ assoc (_⨾-2map 2id) key-law
-      open lg-inner-inner public using (proof)
--}
--}
--}
+      private module loopy-conditions₂ = loopy-conditions₁.conditions₂ key key-law f
+      open loopy-conditions₂ public using (t)
+
+      module theorem
+        (p : P t)
+        where
+
+        private module loopy-theorem = loopy-conditions₂.theorem p
+        open loopy-theorem public using (fixpt)
