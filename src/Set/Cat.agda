@@ -88,7 +88,7 @@ Set = record
       }
     }
   ; ι⨾ = λ
-    { {A} {B} f -> let
+    { {A} {B} {f} -> let
       private module A = records.Set A
       private module B = records.Set B
       in record
@@ -96,7 +96,7 @@ Set = record
       }
     }
   ; ⨾ι = λ
-    { {A} {B} f -> let
+    { {A} {B} {f} -> let
       private module A = records.Set A
       private module B = records.Set B
       in record
@@ -104,7 +104,7 @@ Set = record
       }
     }
   ; ⨾⨾ = λ
-    { {A} {B} {C} {D} f g h -> let
+    { {A} {B} {C} {D} {f} {g} {h} -> let
       private module A = records.Set A
       private module B = records.Set B
       private module C = records.Set C
@@ -114,4 +114,6 @@ Set = record
       }
     }
   }
-module Set = Cat Set
+module Set where
+  open Cat Set public
+  open records public using (module _~>_ ; module _≈_) renaming (module Set to Obj)

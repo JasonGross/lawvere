@@ -27,7 +27,7 @@ record Cat : Type (lsuc (l ⊔ m ⊔ n)) where
 
   _^⨾′_ : ∀ {a1 a2 a3} -> (f : a1 ~> a2) -> ∀ {g1 g2 : a2 ~> a3} -> (g1 ≈ g2) -> ((f ⨾ g1) ≈ (f ⨾ g2))
   f ^⨾′ q = ι₂ ⨾′ q
-  infixl 9 _^⨾′_
+  infixr 9 _^⨾′_
 
   _⨾′^_ : ∀ {a1 a2 a3} -> ∀ {f1 f2 : a1 ~> a2} -> (f1 ≈ f2) -> (g : a2 ~> a3) -> ((f1 ⨾ g) ≈ (f2 ⨾ g))
   p ⨾′^ g = p ⨾′ ι₂
@@ -37,6 +37,6 @@ record Cat : Type (lsuc (l ⊔ m ⊔ n)) where
   f ^⨾′^ g = ι₂ ⨾′ ι₂
   infixl 9 _^⨾′^_
 
-  field ι⨾ : ∀ {a1 a2} (f : a1 ~> a2) -> (ι ⨾ f) ≈ f
-  field ⨾ι : ∀ {a1 a2} (f : a1 ~> a2) -> (f ⨾ ι) ≈ f
-  field ⨾⨾ : ∀ {a1 a2 a3 a4} (f : a1 ~> a2) (g : a2 ~> a3) (h : a3 ~> a4) -> ((f ⨾ g) ⨾ h) ≈ (f ⨾ g ⨾ h)
+  field ι⨾ : ∀ {a1 a2} {f : a1 ~> a2} -> (ι ⨾ f) ≈ f
+  field ⨾ι : ∀ {a1 a2} {f : a1 ~> a2} -> (f ⨾ ι) ≈ f
+  field ⨾⨾ : ∀ {a1 a2 a3 a4} {f : a1 ~> a2} {g : a2 ~> a3} {h : a3 ~> a4} -> (f ⨾ (g ⨾ h)) ≈ ((f ⨾ g) ⨾ h)
