@@ -15,7 +15,7 @@ open import Set.Cat
 open import Shim
 open import bounded-lob
 open import diagonal
-open import lawvere-without-closed
+open import lawvere-without-cartesian-closure
 open import lawvere
 open import lob
 open import loopy

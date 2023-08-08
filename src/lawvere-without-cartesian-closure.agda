@@ -1,7 +1,7 @@
 open import Shim
 open import Cat.Cartesian
 open CartesianCat using (cat)
-module lawvere-without-closed
+module lawvere-without-cartesian-closure
   {l m n}
   (C : CartesianCat l m n)
   where

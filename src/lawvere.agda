@@ -8,7 +8,7 @@ module lawvere
 
 private module C = CartesianClosedCat C
 open C
-import lawvere-without-closed C.ccat as lawvere
+import lawvere-without-cartesian-closure C.ccat as lawvere
 
 module setup
   (a : C.Obj)
