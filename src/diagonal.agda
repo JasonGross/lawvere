@@ -94,11 +94,7 @@ module setup
       -> Tm {Γ} ([Σ] [Ctx] ([Ty] var₀Γ) [→] A))
     (if-fst-dec-eq-ctx-true : ∀ {Γ A qΓ if-eq if-not-eq snd} -> -- if the first components are equal
       ((qΓ [▷] constΠ-subst snd) [⨾] if-fst-dec-eq-ctx_then_else_ {Γ} {A} qΓ if-eq if-not-eq)
-      Tm≈ (([dup] [⨾] (snd [××] (qΓ [▷] constΠ-subst snd))) [⨾] if-eq)) {-
-    (⌜ ε , [Σ] [Ctx] ([Ty] var₀Γ) ⌝c [▷] constΠ-subst ⌜ t ⌝T)
-       [⨾]
-       (if-fst-dec-eq-ctx ⌜ ε , [Σ] [Ctx] ([Ty] var₀Γ) ⌝c then
-        ([ι] [××] [quote-ctx-ty]) [⨾] [subst1] else ([*] [⨾] ⌜ [𝟙] ⌝T)))-}
+      Tm≈ (([dup] [⨾] (snd [××] (qΓ [▷] constΠ-subst snd))) [⨾] if-eq))
     (f : Ty (ε , [Ty] ⌜ ε ⌝c))
     where
 
