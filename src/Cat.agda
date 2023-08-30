@@ -8,13 +8,13 @@ record Cat : Type (lsuc (l ⊔ m ⊔ n)) where
   field _~>_ : Obj -> Obj -> Type m
   infix 1 _~>_
 
-  field _≈_ : ∀ {a1 a2 : Obj} -> (a1 ~> a2) -> (a1 ~> a2) -> Type n
+  field _≈_ : ∀ {a1 a2} -> (a1 ~> a2) -> (a1 ~> a2) -> Type n
   infix 1 _≈_
 
-  field ι₂ : ∀ {a1 a2 : Obj} {f : a1 ~> a2} -> (f ≈ f)
-  field ÷₂_ : ∀ {a1 a2 : Obj} {f1 f2 : a1 ~> a2} -> (f1 ≈ f2) -> (f2 ≈ f1)
+  field ι₂ : ∀ {a1 a2} {f : a1 ~> a2} -> (f ≈ f)
+  field ÷₂_ : ∀ {a1 a2} {f1 f2 : a1 ~> a2} -> (f1 ≈ f2) -> (f2 ≈ f1)
   infix 12 ÷₂_
-  field _⨾₂_ : ∀ {a1 a2 : Obj} {f1 f2 f3 : a1 ~> a2} -> (f1 ≈ f2) -> (f2 ≈ f3) -> (f1 ≈ f3)
+  field _⨾₂_ : ∀ {a1 a2} {f1 f2 f3 : a1 ~> a2} -> (f1 ≈ f2) -> (f2 ≈ f3) -> (f1 ≈ f3)
   infixl 9 _⨾₂_
 
   field ι : ∀ {a} -> (a ~> a)
@@ -22,14 +22,15 @@ record Cat : Type (lsuc (l ⊔ m ⊔ n)) where
 
   field _⨾_ : ∀ {a1 a2 a3} -> (a1 ~> a2) -> (a2 ~> a3) -> (a1 ~> a3)
   infixl 9 _⨾_
-  field _⨾′_ : ∀ {a1 a2 a3} -> ∀ {f1 f2 : a1 ~> a2} -> (f1 ≈ f2) -> ∀ {g1 g2 : a2 ~> a3} -> (g1 ≈ g2) -> ((f1 ⨾ g1) ≈ (f2 ⨾ g2))
+  field
+    _⨾′_ : ∀ {a1 a2 a3} -> {f1 f2 : a1 ~> a2} -> (f1 ≈ f2) -> {g1 g2 : a2 ~> a3} -> (g1 ≈ g2) -> ((f1 ⨾ g1) ≈ (f2 ⨾ g2))
   infixl 9 _⨾′_
 
-  _^⨾′_ : ∀ {a1 a2 a3} -> (f : a1 ~> a2) -> ∀ {g1 g2 : a2 ~> a3} -> (g1 ≈ g2) -> ((f ⨾ g1) ≈ (f ⨾ g2))
+  _^⨾′_ : ∀ {a1 a2 a3} -> (f : a1 ~> a2) -> {g1 g2 : a2 ~> a3} -> (g1 ≈ g2) -> ((f ⨾ g1) ≈ (f ⨾ g2))
   f ^⨾′ q = ι₂ ⨾′ q
   infixr 9 _^⨾′_
 
-  _⨾′^_ : ∀ {a1 a2 a3} -> ∀ {f1 f2 : a1 ~> a2} -> (f1 ≈ f2) -> (g : a2 ~> a3) -> ((f1 ⨾ g) ≈ (f2 ⨾ g))
+  _⨾′^_ : ∀ {a1 a2 a3} -> {f1 f2 : a1 ~> a2} -> (f1 ≈ f2) -> (g : a2 ~> a3) -> ((f1 ⨾ g) ≈ (f2 ⨾ g))
   p ⨾′^ g = p ⨾′ ι₂
   infixl 9 _⨾′^_
 
