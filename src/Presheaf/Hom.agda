@@ -13,7 +13,7 @@ open C
   { Run = λ{ a1 -> record { Obj = a1 ~> a2 ; _~_ = _≈_ ; ι = ι₂ ; ÷_ = ÷₂_ ; _⨾_ = _⨾₂_ } }
   ; Map = λ f → record { run = f ⨾_ ; map = f ^⨾′_ }
   ; Map′ = λ e → record { component = e ⨾′^_ }
-  ; Map-ι = record { component = λ{ a -> ι⨾ } }
+  ; Map-ι = record { component = λ{ _ -> ÷₂ ι⨾ } }
   ; Map-⨾ = λ{ f g -> record { component = λ{ a -> ⨾⨾ } } }
   }
 infix 9 ∙~>_
