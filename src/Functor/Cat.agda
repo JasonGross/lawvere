@@ -87,3 +87,6 @@ Hom A B = record
     private module B = Cat.Cat B
 module Hom A B where
   open Cat.Cat (Hom A B) public
+
+  module _~>_ {f} {g} = records._~>_ {A} {B} {f} {g}
+  module _≈_ {f} {g} = records._≈_ {A} {B} {f} {g}
