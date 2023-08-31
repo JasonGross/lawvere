@@ -16,12 +16,12 @@ private module records where
     field map : ∀ {a1 a2} -> (p : a1 A.~> a2) -> (run a1 B.⨾ g.map p) B.≈ (f.map p B.⨾ run a2)
   infixl 9 _~>_
 
-  record _≈>_ {A B : Cat} {f g : Functor A B} (j k : f ~> g) : Type (l ⊔ n) where
+  record _≈_ {A B : Cat} {f g : Functor A B} (j k : f ~> g) : Type (l ⊔ n) where
     private module B = Cat B
     private module j = _~>_ j
     private module k = _~>_ k
     field component : ∀ a -> (j.run a B.≈ k.run a)
-  infixl 9 _≈>_
+  infixl 9 _≈_
 
 open import Cat
 open import Functor l m n
@@ -30,21 +30,21 @@ Hom : Cat l m n -> Cat l m n -> Cat (l ⊔ m ⊔ n) (l ⊔ m ⊔ n) (l ⊔ n)
 Hom A B = record
   { Obj = Functor A B
   ; _~>_ = records._~>_
-  ; _≈_ = records._≈>_
+  ; _≈_ = records._≈_
   ; ι₂ = record
     { component = λ _ -> B.ι₂
     }
   ; ÷₂_ = λ
     { u -> let
-      private module u = records._≈>_ u
+      private module u = records._≈_ u
       in record
         { component = λ { a -> B.÷₂ (u.component a) }
         }
     }
   ; _⨾₂_ = λ
     { u v -> let
-      private module u = records._≈>_ u
-      private module v = records._≈>_ v
+      private module u = records._≈_ u
+      private module v = records._≈_ v
       in record
         { component = λ { a -> u.component a B.⨾₂ v.component a }
         }
@@ -67,8 +67,8 @@ Hom A B = record
     }
   ; _⨾′_ = λ
     { u v -> let
-      private module u = records._≈>_ u
-      private module v = records._≈>_ v
+      private module u = records._≈_ u
+      private module v = records._≈_ v
       in record
         { component = λ { a -> u.component a B.⨾′ v.component a }
         }
