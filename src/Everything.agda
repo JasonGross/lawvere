@@ -18,6 +18,7 @@ open import diagonal-from-lob-with-universe
 open import diagonal
 open import lawvere-without-cartesian-closure
 open import lawvere
+open import lob-via-diagonal-using-universe
 open import lob
 open import loopy
 open import no-presheaf

@@ -49,6 +49,9 @@ record IsClosed (C : Cat) (CC : IsCartesian C) : Type (l ⊔ m ⊔ n) where
 
   field _^_ : Obj -> Obj -> Obj
   field apply : ∀ {a b : Obj} -> (((b ^ a) × a) ~> b)
+  -- TODO: more systematic?
+  field lambda : ∀ {a b : Obj} -> (a ~> b) -> (𝟙 ~> (b ^ a))
+  field lambda-apply : ∀ {a b c : Obj} {f : a ~> b} {g : c ~> a} -> ((lambda f ×× g) ⨾ apply) ≈ ((getr ⨾ g) ⨾ f)
 --  field uncurry : ∀ {a b : Obj} ->
   -- TODO: more fields
 
