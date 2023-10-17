@@ -24,7 +24,10 @@ record IsLaxMonoidalSemicomonadCompat
   -- points are quoted with `F.𝟙-codistr ⨾ F.map`, quoted terms are
   -- requoted with `cojoin`; these must agree on closed quoted terms
   field map-cojoin : ∀ {a} {f : 𝟙 ~> run a} -> (f ⨾ cojoin) ≈ (𝟙-codistr ⨾ map f)
+  -- TODO: Where does this fit in?  Is it part of LaxMonoidal?
   field ×-codistr-dup  : ∀ {a} -> (dup {run a} ⨾ ×-codistr) ≈ map dup
+  field ×-codistr-getl : ∀ {a b} -> (×-codistr {a} {b} ⨾ map getl) ≈ getl
+  field ×-codistr-getr : ∀ {a b} -> (×-codistr {a} {b} ⨾ map getr) ≈ getr
 
 record IsLaxMonoidalSemicomonad (C : CartesianCat) (F : Functor (C .cat) (C .cat)) : Type (l ⊔ m ⊔ n) where
   field lm : IsLaxMonoidal C C F

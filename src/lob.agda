@@ -10,7 +10,7 @@ module lob
 private module C = CartesianCat C
 private module □ = LaxMonoidalSemicomonad F
 open import Presheaf.Hom C.cat
-open C
+open C hiding (Obj)
 open □ using () renaming (run to □ ; cojoin to quot)
 
 module setup
@@ -55,5 +55,5 @@ module setup
      ⨾₂ (□.𝟙-codistr ⨾ (□.map (pack t) ⨾ □.map t)) =[ _ ^⨾′ □.map⨾ ]=
      ⨾₂ (□.𝟙-codistr ⨾ □.map (pack t ⨾ t))          [■]
 
-    module loopy-conditions = loopy-setup.conditions key key-law f
+    private module loopy-conditions = loopy-setup.conditions key key-law f
     open loopy-conditions public using (t ; fixpt)

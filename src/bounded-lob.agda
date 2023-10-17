@@ -11,7 +11,7 @@ module bounded-lob
 private module C = CartesianCat C
 private module □ = LaxMonoidalSemicomonad F
 open import Presheaf.Hom C.cat
-open C
+open C hiding (Obj)
 open □ using () renaming (run to □ ; cojoin to quot)
 
 module setup

@@ -7,7 +7,7 @@ module lawvere
   where
 
 private module C = CartesianClosedCat C
-open C
+open C hiding (Obj)
 import lawvere-without-cartesian-closure C.ccat as lawvere
 
 module setup

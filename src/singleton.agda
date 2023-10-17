@@ -12,7 +12,7 @@ import loopy C A as loopy
 
 private module C = CartesianCat C
 private module A = Presheaf A
-open C
+open C hiding (Obj)
 open A using (_»_)
 
 module setup

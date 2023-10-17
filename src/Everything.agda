@@ -14,6 +14,7 @@ open import Set
 open import Set.Cat
 open import Shim
 open import bounded-lob
+open import diagonal-from-lob-with-universe
 open import diagonal
 open import lawvere-without-cartesian-closure
 open import lawvere

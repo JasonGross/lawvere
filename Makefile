@@ -3,8 +3,8 @@
 all: src/Everything.agda
 	agda src/Everything.agda
 
-FILE_FINDER:=find . -type f \( -name "*.agda" -o -name "*.lagda" \)
-#FILE_FINDER:=git ls-files "*.agda" "*.lagda"
+#FILE_FINDER:=find . -type f \( -name "*.agda" -o -name "*.lagda" \)
+FILE_FINDER:=git ls-files "*.agda" "*.lagda"
 
 EVERYTHING_CMD := \
 	(cd "src"; \

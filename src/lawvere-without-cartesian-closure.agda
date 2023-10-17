@@ -8,7 +8,7 @@ module lawvere-without-cartesian-closure
 
 open import Presheaf.Hom (C .cat)
 private module C = CartesianCat C
-open C
+open C hiding (Obj)
 
 module setup
   (a : C.Obj)
