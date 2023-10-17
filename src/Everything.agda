@@ -5,6 +5,7 @@ module Everything where
 open import Cat
 open import Cat.Cartesian
 open import Functor
+open import Functor.Cat
 open import Functor.LaxMonoidal
 open import Functor.LaxMonoidalSemicomonad
 open import Functor.Semicomonad
